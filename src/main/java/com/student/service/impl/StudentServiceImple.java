@@ -38,27 +38,27 @@ public class StudentServiceImple implements StudentService {
 	@Override
 	public ResponseMessage saveDetails(StudentSaveDTO dto) {
 		if (dto.getName() == null || dto.getName().isBlank()) {
-			return new ResponseMessage("Name is required", false, 400, null);
+			return new ResponseMessage("Name is required", false, 400);
 		}
 		if (dto.getPhno() == null || dto.getPhno().isBlank()) {
-			return new ResponseMessage("Phone number is required", false, 400, null);
+			return new ResponseMessage("Phone number is required", false, 400);
 		}
 		if (dto.getPhno().trim().length() != 10) {
-			return new ResponseMessage("Phone number must be 10 digits", false, 400, null);
+			return new ResponseMessage("Phone number must be 10 digits", false, 400);
 		}
 		if (dto.getEmail() == null || dto.getEmail().isBlank()) {
-			return new ResponseMessage("Email is required", false, 400, null);
+			return new ResponseMessage("Email is required", false, 400);
 		}
 		if (dto.getDate() == null || dto.getDate().isBlank()) {
-			return new ResponseMessage("Date is required", false, 400, null);
+			return new ResponseMessage("Date is required", false, 400);
 		}
 
 		if (studentRepository.findByEmail(dto.getEmail()).isPresent()) {
-			return new ResponseMessage("Email already exists", false, 400, null);
+			return new ResponseMessage("Email already exists", false, 400);
 		}
 
 		if (studentRepository.findByPhno(dto.getPhno()).isPresent()) {
-			return new ResponseMessage("Phone number already exists", false, 400, null);
+			return new ResponseMessage("Phone number already exists", false, 400);
 		}
 		if (dto.getCourseIds() == null || dto.getCourseIds().isEmpty()) {
 			throw new IllegalArgumentException("Please select at least one course");
@@ -74,7 +74,7 @@ public class StudentServiceImple implements StudentService {
 		for (Long id : dto.getCourseIds()) {
 			Optional<Courses> courseOpt = courseRepository.findById(id);
 			if (courseOpt.isEmpty()) {
-				return new ResponseMessage("Course not found with ID: " + id, false, 404, null);
+				return new ResponseMessage("Course not found with ID: " + id, false, 404);
 			}
 			courseSet.add(courseOpt.get());
 		}
@@ -121,9 +121,9 @@ public class StudentServiceImple implements StudentService {
 	public ResponseMessage deleteStudent(Long id) {
 		if (studentRepository.existsById(id)) {
 			studentRepository.deleteById(id);
-			return new ResponseMessage("Deleted successfully", true, 200, null);
+			return new ResponseMessage("Deleted successfully", true, 200);
 		} else {
-			return new ResponseMessage("Student not found", false, 404, null);
+			return new ResponseMessage("Student not found", false, 404);
 		}
 	}
 
