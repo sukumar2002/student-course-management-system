@@ -13,4 +13,11 @@ public class ResponseMessage {
 	private boolean status;
 	private int code;
 	private Object data;
+
+	 public ResponseMessage(String message, boolean status, int code) {
+	        this.message = message;
+	        this.status = status;
+	        this.code = code;
+	        this.data = "No student created";  
+	    }
 }
