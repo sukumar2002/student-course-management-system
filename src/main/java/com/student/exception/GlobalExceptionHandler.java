@@ -10,9 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
 import com.student.response.ResponseMessage;
-
 import jakarta.validation.ConstraintViolationException;
 
 @ControllerAdvice
